@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מדריך עבודה – מוקד VIP / פרימיום</title>
+  <style>
+    :root{
+      --navy:#0b2d57;
+      --blue:#145da0;
+      --light-blue:#eaf4ff;
+      --gold:#f4b942;
+      --light-gold:#fff7e2;
+      --green:#2f855a;
+      --light-green:#e8f7ef;
+      --red:#c0392b;
+      --light-red:#fff0ee;
+      --text:#182433;
+      --muted:#64748b;
+      --border:#d7e0ea;
+      --white:#fff;
+      --shadow:0 10px 30px rgba(11,45,87,.08);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,"Heebo","Assistant",sans-serif;
+      background:#f5f8fc;
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    .page{
+      max-width:1200px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    header{
+      background:linear-gradient(135deg,var(--navy),#103d76);
+      color:white;
+      border-radius:24px;
+      padding:34px 32px;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
+
+    header h1{
+      margin:0 0 8px;
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.2;
+    }
+
+    header p{
+      margin:0;
+      color:#dcecff;
+      font-size:18px;
+    }
+
+    .section{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:24px;
+      margin-bottom:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:0 0 20px;
+      font-size:28px;
+      color:var(--navy);
+    }
+
+    .section-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      background:var(--blue);
+      color:white;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      flex:0 0 auto;
+    }
+
+    .grid{
+      display:grid;
+      gap:16px;
+    }
+
+    .grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .card{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      background:#fff;
+    }
+
+    .card.blue{background:var(--light-blue); border-color:#c8e0fb}
+    .card.gold{background:var(--light-gold); border-color:#f4d88e}
+    .card.green{background:var(--light-green); border-color:#b9e3cc}
+    .card.red{background:var(--light-red); border-color:#f1c6c1}
+
+    .card h3,.card h4{
+      margin-top:0;
+      margin-bottom:10px;
+      color:var(--navy);
+    }
+
+    .benefit{
+      min-height:160px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .icon{
+      font-size:30px;
+      margin-bottom:10px;
+    }
+
+    .flow{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .step{
+      position:relative;
+      border:1px solid #bfd6ed;
+      background:white;
+      border-radius:14px;
+      padding:15px 18px 15px 52px;
+      min-height:58px;
+    }
+
+    .step .n{
+      position:absolute;
+      left:12px;
+      top:50%;
+      transform:translateY(-50%);
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--blue);
+      color:white;
+      font-weight:bold;
+    }
+
+    .step.gold-step{
+      border-color:#efd08a;
+      background:#fffdf7;
+    }
+
+    .step.gold-step .n{
+      background:#b98214;
+    }
+
+    .arrow{
+      text-align:center;
+      color:var(--blue);
+      font-size:24px;
+      line-height:1;
+      font-weight:bold;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#e5effa;
+      color:#0d4f88;
+      font-weight:700;
+      margin:4px 0;
+    }
+
+    .tag.green{background:#e1f3e8;color:#267348}
+    .tag.gold{background:#fff2c9;color:#8a6513}
+    .tag.red{background:#ffe2de;color:#a2372b}
+
+    code{
+      direction:ltr;
+      unicode-bidi:embed;
+      display:inline-block;
+      max-width:100%;
+      overflow-wrap:anywhere;
+      background:#f1f5f9;
+      border:1px solid #dbe4ef;
+      border-radius:8px;
+      padding:3px 7px;
+      font-family:Consolas,monospace;
+      font-size:.92em;
+    }
+
+    .note{
+      border-right:5px solid var(--gold);
+      background:#fffaf0;
+      padding:14px 16px;
+      border-radius:12px;
+      margin-top:14px;
+    }
+
+    .warning{
+      border-right-color:var(--red);
+      background:#fff4f2;
+    }
+
+    .schedule{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:12px;
+    }
+
+    .schedule th,.schedule td{
+      border-bottom:1px solid var(--border);
+      padding:12px 10px;
+      text-align:right;
+    }
+
+    .schedule th{
+      color:var(--navy);
+      background:#f7fbff;
+    }
+
+    .loop{
+      display:grid;
+      grid-template-columns:1fr auto 1fr auto 1fr;
+      gap:10px;
+      align-items:center;
+    }
+
+    .loop .arrow-inline{
+      font-size:28px;
+      color:var(--blue);
+    }
+
+    .credentials{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .cred-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      background:#f7f9fc;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 14px;
+    }
+
+    .small{
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .footer-reminder{
+      background:var(--navy);
+      color:white;
+      padding:20px;
+      border-radius:18px;
+      font-size:18px;
+      text-align:center;
+      margin:24px 0 6px;
+    }
+
+    ul{
+      padding-right:20px;
+      margin-bottom:0;
+    }
+
+    a{
+      color:#0b67b2;
+      font-weight:700;
+      overflow-wrap:anywhere;
+    }
+
+    @media(max-width:980px){
+      .grid-5,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+
+    @media(max-width:640px){
+      .page{padding:12px}
+      header{padding:24px 18px;border-radius:18px}
+      .section{padding:16px;border-radius:18px}
+      .grid-5,.grid-4{grid-template-columns:1fr}
+      .section-title{font-size:23px}
+      .loop{
+        grid-template-columns:1fr;
+      }
+      .loop .arrow-inline{
+        transform:rotate(90deg);
+        text-align:center;
+      }
+    }
+
+    @media print{
+      body{background:white}
+      .page{max-width:none;padding:0}
+      .section,header{box-shadow:none;break-inside:avoid}
+      a{color:black;text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <h1>מדריך עבודה – מוקד VIP / פרימיום</h1>
+      <p>עזים בקדושה | נוהל שירות, מעבר לקוחות, טיפול שוטף וביטולים</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">1</span> מה כולל מנוי VIP / פרימיום?</h2>
+      <div class="card gold" style="font-size:18px;line-height:1.9;">
+        <strong>
+          שירות VIP כולל מעטפת מועדפת עם קדימות במענה, אפשרות לשיחה טלפונית עם נציג עד פעמיים בחודש,
+          וניהול חשבון נטספארק.
+        </strong>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">2</span> מעבר לקוחות למוקד VIP</h2>
+
+      <div class="grid grid-2">
+        <div class="card blue">
+          <h3>תרחיש א׳ – לקוח פרימיום חדש</h3>
+          <div class="flow">
+            <div class="step"><span class="n">1</span>הרכישה מתבצעת במוקד אור.</div>
+            <div class="arrow">↓</div>
+            <div class="step"><span class="n">2</span>הלקוח מקבל הודעת מעבר ממוקד אור.</div>
+            <div class="arrow">↓</div>
+            <div class="step">
+              <span class="n">3</span>
+              מוקד "עזים בקדושה" שולח תבנית בשם <code>mokedor_new_prenium</code>.
+              <div style="margin-top:14px;padding:14px;border-radius:12px;background:#f8fbff;border:1px dashed #9fc3e8;">
+                <strong style="display:block;margin-bottom:8px;color:#0b2d57;">פירוט הטמפלייט:</strong>
+                <div style="background:#fff;border:1px solid #d7e0ea;border-radius:10px;padding:14px;line-height:1.9;">
+                  שלום <strong>{{1}}</strong>, ברוך הבא <strong>למוקד עזים בקדושה</strong>, כאן תקבל את המענה בתור לקוח פרימיום של מוקד אור ✨
+                  אנחנו עושים את מירב המאמצים כדי לטפל בפנייתך במהירות בהתאם <strong>לשעות הפעילות המורחבות</strong> 💫
+                  <strong>במה בדיוק נוכל לסייע?</strong>
+                </div>
+                <div class="small" style="margin-top:8px;">
+                  <strong>משתנה {{1}}:</strong> שם הלקוח / הערך האישי שמוזן בתבנית לפני השליחה.
+                </div>
+              </div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="step"><span class="n">4</span>מופעל הטריגר <code>לקוח.פרימיום.אשמח.לעזרה</code>.</div>
+            <div class="arrow">↓</div>
+            <div class="step"><span class="n">5</span>הטריגר מוביל לפלואו <strong>פרמיום ראשי</strong>.</div>
+          </div>
+          <div class="note"><strong>תפקיד המוקדן:</strong> לוודא שהלקוח נקלט במוקד "עזים בקדושה" ושכל המשתנים נשמרו.</div>
+        </div>
+
+        <div class="card gold">
+          <h3>תרחיש ב׳ – לקוח פרימיום קיים שעדיין פונה במוקד אור</h3>
+          <div class="flow">
+            <div class="step gold-step"><span class="n">1</span>המערכת של מוקד אור מזהה את הלקוח כ-<code>VIP</code> בפלואו הראשי.</div>
+            <div class="arrow">↓</div>
+            <div class="step gold-step"><span class="n">2</span>הלקוח מועבר ל<strong>פלואו מעבר לקוח פרימיום</strong>.</div>
+            <div class="arrow">↓</div>
+            <div class="step gold-step"><span class="n">3</span>הלקוח מקבל הודעת שדרוג בצירוף קישור ישיר לווטסאפ:<br>
+              <a href="https://wa.me/972733260796?text=לקוח.פרמיום.אשמח.לעזרה" target="_blank" rel="noopener">
+                wa.me/972733260796?text=לקוח.פרמיום.אשמח.לעזרה
+              </a>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="step gold-step"><span class="n">4</span>המשתנים של הלקוח מועברים ממוקד אור ונשמרים במוקד "עזים בקדושה".</div>
+            <div class="arrow">↓</div>
+            <div class="step gold-step"><span class="n">5</span>אם הלקוח מגיב שוב במוקד אור – מפנים אותו ללחוץ על הקישור שקיבל ולהמשיך טיפול במוקד החדש.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">↳</span> פירוט התהליכים האוטומטיים</h2>
+      <p style="margin-top:-8px;color:var(--muted);">
+        כאן מפורט מה עושה כל אחד משני השלבים שמופיעים בתרחיש א׳: הטריגר והפלואו הראשי.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card blue">
+          <h3>⚡ הטריגר: <code>לקוח.פרימיום.אשמח.לעזרה</code></h3>
+          <p><strong>מטרת הטריגר:</strong> להעביר את הלקוח ממוקד אור למסלול ה-VIP במוקד "עזים בקדושה" ולהגדיר אותו נכון במערכת.</p>
+          <ul>
+            <li>מעביר את <strong>משתני הלקוח ממוקד אור</strong> למוקד "עזים בקדושה".</li>
+            <li>אם המשתנים <strong>לא עברו בהצלחה</strong> – המערכת כותבת על כך ללקוח.</li>
+            <li>מגדיר את משתנה <strong>סיווג הלקוח</strong> ל-<code>VIP_mokedOr</code>.</li>
+            <li>מוסיף תיוג אחראי: <strong>יואל מויאל</strong>.</li>
+            <li>מעביר את הלקוח לפלואו <strong>פרמיום ראשי</strong>.</li>
+          </ul>
+
+          <div class="note">
+            <strong>בסיום הטריגר:</strong>
+            הלקוח אמור להיות עם סיווג <code>VIP_mokedOr</code>, עם התיוג של יואל מויאל, ולהיכנס לפלואו פרמיום ראשי.
+          </div>
+        </div>
+
+        <div class="card gold">
+          <h3>🔄 הפלואו: פרמיום ראשי</h3>
+          <p><strong>מטרת הפלואו:</strong> להשלים את קליטת לקוח הפרימיום ולהעביר אותו לטיפול נציג בצורה מסודרת.</p>
+          <ul>
+            <li>הפלואו נפתח מתוך הפלואו הראשי עבור מי שמסווג כ-<code>VIP_mokedOr</code>.</li>
+            <li>שולח הודעה ללקוח <strong>רק כשהמוקד פתוח</strong>, בהתאם לחלונות הזמן שהוגדרו.</li>
+            <li>אם ללקוח אין <strong>מזהה מכשיר</strong> – כלומר מדובר בלקוח חדש – הפלואו שואל אותו מהו מזהה המכשיר ושומר את הנתון.</li>
+            <li>מוסיף את התגית <span class="tag green">לקוח פרימיום- מחכה לנציג</span>.</li>
+            <li>מוסיף את התגית <span class="tag">לקוח פרימיום- מערכת חדשה</span>.</li>
+          </ul>
+
+          <div class="note">
+            <strong>בסיום הפלואו:</strong>
+            הלקוח אמור להיות מזוהה כלקוח פרימיום, עם מזהה מכשיר במידת הצורך, ועם תגיות הטיפול המתאימות לנציג.
+          </div>
+        </div>
+      </div>
+</section>
+
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">3</span> עבודה שוטפת במהלך המשמרת</h2>
+      <div class="loop">
+        <div class="card blue">
+          <h3>1. בדיקה קבועה</h3>
+          <p>כל חצי שעה–שעה בודקים שאין פניות פרימיום שממתינות.</p>
+        </div>
+        <div class="arrow-inline">←</div>
+        <div class="card">
+          <h3>2. איתור פניות</h3>
+          <p>מחפשים לפי התיוג של יואל או באמצעות חיפוש באודיאנס.</p>
+        </div>
+        <div class="arrow-inline">←</div>
+        <div class="card gold">
+          <h3>3. תעדוף</h3>
+          <p>אם קיימות פניות פרימיום – עוצרים את הטיפול הרגיל ועונים להן קודם.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <h3>4. תגיות שחובה לבדוק במהלך המשמרת</h3>
+
+        <p style="margin-bottom:8px;"><span class="tag green">לקוח פרימיום- מחכה לנציג</span></p>
+        <p style="margin-top:0;"><span class="tag">לקוח פרימיום- מערכת חדשה</span></p>
+
+        <div class="note warning">
+          <strong>אחריות של כולם:</strong>
+          תגיות <strong>"המשך טיפול"</strong>, <strong>"מחכה לנציג"</strong> ובוודאי
+          <strong>"מחכה לנציג- לקוח פרימיום"</strong> – לא משאירים על פניות ישנות בסוף המשמרת.
+          <br><br>
+          <strong>איך מאתרים:</strong>
+          <code>אודיאנס → פילטר → טגס → שם התגית</code>
+        </div>
+
+        <div class="note">
+          <strong>התגית "לקוח פרימיום- מערכת חדשה":</strong>
+          מיועדת להעברת הלקוח ממערכת מוקד אור למערכת
+          <code>mokedorvip@gmail.com</code>.
+          <br>
+          לאחר שההעברה בוצעה בהצלחה – <strong>יש להסיר את התגית.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">4</span> נוהל ביטול מנוי פרימיום</h2>
+      <div class="grid grid-2">
+        <div class="card blue">
+          <h3>שלב 1 – פתיחת פלואו</h3>
+          <p>שיוך / פתיחת פלואו:</p>
+          <p><span class="tag">ביטול פרימיום במוקד</span></p>
+        </div>
+
+        <div class="card gold">
+          <h3>שלב 2 – תיעוד הביטול</h3>
+          <p>מזינים את כל פרטי הלקוח ואת סיבת הביטול בקובץ Google Sheets המיועד לביטולים.</p>
+          <p>
+            <a href="https://docs.google.com/spreadsheets/d/1siXsUKiSiUbL6AK_lGodn7cScsVxxbi_cLS7SyaQW7k/edit?gid=0#gid=0" target="_blank" rel="noopener">
+              פתיחת קובץ "ביטול מנוי"
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="note"><strong>חובה:</strong> לתעד כל ביטול באופן מלא.</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">5</span> פרטי התחברות למערכת החדשה</h2>
+
+      <div class="card red">
+        <h3>🔐 פרטי גישה</h3>
+        <div class="credentials">
+          <div class="cred-row">
+            <strong>שם משתמש</strong>
+            <code>mokedorvip@gmail.com</code>
+          </div>
+          <div class="cred-row">
+            <strong>סיסמה</strong>
+            <code>meodhashuv!</code>
+          </div>
+        </div>
+        <div class="note warning">
+          יש לשמור על סודיות פרטי הגישה ולהשתמש בהם אך ורק לפי הנחיות הניהול.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-number">6</span> סיכום מהיר למוקדן</h2>
+      <div class="grid grid-3">
+        <div class="card blue">
+          <h3>לקוח חדש</h3>
+          <p>וודא מעבר תקין, קליטה במוקד החדש ושמירת המשתנים.</p>
+        </div>
+        <div class="card gold">
+          <h3>לקוח קיים במוקד אור</h3>
+          <p>הפנה אותו לקישור המעבר והמשך טיפול במוקד "עזים בקדושה".</p>
+        </div>
+        <div class="card green">
+          <h3>במהלך המשמרת</h3>
+          <p>בדוק פניות פרימיום באופן יזום ותן להן קדימות.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-reminder">
+      <strong>תזכורת חשובה:</strong>
+      לקוחות VIP / פרימיום מקבלים קדימות. בודקים פניות לעיתים קרובות, מטפלים במהירות ולא משאירים תגיות פתוחות לסוף המשמרת.
+    </div>
+
+  </div>
+</body>
+</html>
